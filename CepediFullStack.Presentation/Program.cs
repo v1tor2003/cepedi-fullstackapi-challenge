@@ -1,11 +1,18 @@
 using CepediFullStack.Infrastructure;
+using CepediFullStack.Application;
 using CepediFullStack.Infrastructure.Context;
+using CepediFullStack.Infrastructure.Repositories;
+using CepediFullStack.Domain.Interfaces;
+using CepediFullStack.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ConfigureInfrastructure(builder.Configuration);
+builder.Services.ConfigureApplication();
 
-builder.Services.AddControllers();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
+builder.Services.AddScoped(typeof(IService<>), typeof(BaseService<>));
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

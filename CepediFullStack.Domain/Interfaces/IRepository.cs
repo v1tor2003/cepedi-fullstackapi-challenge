@@ -4,10 +4,12 @@ namespace CepediFullStack.Domain.Interfaces
 {
     public interface IRepository<T> where T : BaseEntity
     {
-        void Create(T entity);
-        void Update(T entity);
-        void Delete(T entity);
-        Task<T?> GetById(Guid id);
-        Task<IEnumerable<T>?> GetAll();
+        Task CreateAsync(T entity);
+        Task UpdateAsync(T entity);
+        Task UpdateAsync(T entity, T updatedEntity);
+        Task DeleteAsync(T entity);
+        Task<T?> GetByIdAsync(Guid id);
+        Task<IEnumerable<T>?> GetAllAsync();
+        Task SaveAsync();
     }
 }
