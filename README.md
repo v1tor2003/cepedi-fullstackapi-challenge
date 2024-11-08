@@ -1,4 +1,4 @@
-# MyCleanArchitectureApp
+# CepediFullStackChallenge
 
 A .NET API project structured following Clean Architecture principles. This application was developed as a suggested challenge for the ResTic36 FullStack folks. The goal is to implement an API following best practices to ensure quality, maintainability, and scalability. The project is organized into four main layers: Domain, Application, Infrastructure, and API.
 
