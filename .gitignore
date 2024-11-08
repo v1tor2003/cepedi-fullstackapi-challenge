@@ -1,0 +1,71 @@
+# Ignore build output directories
+bin/
+obj/
+
+# Ignore user-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore Visual Studio files
+.vs/
+
+# Ignore Rider IDE files
+.idea/
+*.sln.iml
+
+# Ignore dotnet specific files
+*.dotCover
+coverage*.json
+*.opendb
+*.pdb
+
+# Ignore NuGet packages
+*.nupkg
+packages/
+
+# Ignore logs, backup, and output files
+*.log
+*.stackdump
+*.bak
+*.swp
+
+# Ignore publish outputs
+publish/
+
+# Ignore temporary files
+*.tmp
+*.temp
+*.cache
+
+# Ignore database files
+*.mdf
+*.ldf
+*.sqlite
+*.sqlite3
+*.db
+
+# Ignore Resharper files
+_ReSharper*/
+*.DotSettings.user
+
+# Ignore Rider files
+.idea/
+*.sln.iml
+
+# Ignore test results
+TestResults/
+*.trx
+*.coverage
+
+# Ignore configuration and secrets files
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.json.user
+
+# Ignore application insights folder
+ApplicationInsights.config
