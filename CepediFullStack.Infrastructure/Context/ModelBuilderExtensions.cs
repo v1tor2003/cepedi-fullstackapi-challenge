@@ -36,4 +36,14 @@ public static class ModelBuilderExtensions
                     .WithMany(p => p.OrderProducts)
                     .HasForeignKey(op => op.ProductId);
     }
+
+    public static void SeedStatuses(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Status>()
+                    .HasData(
+                        new Status { Id = Guid.NewGuid(), Name = "Pendente", CreatedAt = DateTimeOffset.UtcNow},
+                        new Status { Id = Guid.NewGuid(), Name = "Aprovado", CreatedAt = DateTimeOffset.UtcNow},
+                        new Status { Id = Guid.NewGuid(), Name = "Entregue", CreatedAt = DateTimeOffset.UtcNow}
+                    );
+    }
 }

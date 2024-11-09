@@ -17,6 +17,7 @@ namespace CepediFullStack.Infrastructure.Context
             modelBuilder.ConfigureCustomerOrderRelationship();
             modelBuilder.ConfigureOrderStatusesRelationship();
             modelBuilder.ConfigureOrderProductRelationship();
+            modelBuilder.SeedStatuses();
             base.OnModelCreating(modelBuilder);
         }
     }

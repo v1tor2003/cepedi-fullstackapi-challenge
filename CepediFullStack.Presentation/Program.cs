@@ -4,6 +4,7 @@ using CepediFullStack.Infrastructure.Context;
 using CepediFullStack.Infrastructure.Repositories;
 using CepediFullStack.Domain.Interfaces;
 using CepediFullStack.Application.Services;
+using CepediFullStack.Presentation.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,9 @@ builder.Services.ConfigureApplication();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
 builder.Services.AddScoped(typeof(IService<>), typeof(BaseService<>));
 builder.Services.AddScoped<ICustomerService, CustomerService>();
-
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IStatusService, StatusService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -29,6 +32,7 @@ if(app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseMiddleware<ErrorHandlingMiddleware>();
 app.MapControllers();
 
 app.Run();

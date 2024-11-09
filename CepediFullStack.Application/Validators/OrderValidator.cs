@@ -1,9 +1,9 @@
-using CepediFullStack.Domain.Entities;
+using CepediFullStack.Application.Dtos.Order;
 using FluentValidation;
 
 namespace CepediFullStack.Application.Validators
 {
-    public class OrderValidator : AbstractValidator<Order>
+    public class OrderValidator : AbstractValidator<OrderRequest>
     {
         public OrderValidator()
         {
@@ -14,7 +14,7 @@ namespace CepediFullStack.Application.Validators
                 .NotNull().WithMessage("Order.CustomerId must be specified.");
 
             RuleFor(o => o.StatusId)
-                .NotNull().WithMessage("Order.StatusId must be specified.");
+                .NotNull().WithMessage("Order.StatusName must be specified.");
         }
     }
 }

@@ -14,18 +14,18 @@ namespace CepediFullStack.Presentation.Controllers
             _customerService = customerService;
 
         [HttpGet(Name = "GetCustomers")]
-        public async Task<ActionResult<IEnumerable<GetCustomerDto>>> Get()
+        public async Task<ActionResult<IEnumerable<CustomerResponse>>> Get()
         {
-            var customers = await _customerService.GetAllAsync<GetCustomerDto>();
+            var customers = await _customerService.GetAllAsync<CustomerResponse>();
             if (customers is null || !customers.Any()) return NotFound(); 
             
             return Ok(customers);                   
         }
 
         [HttpGet("{id}", Name = "GetCustomer") ]
-        public async Task<ActionResult<GetCustomerDto>> Get(Guid id)
+        public async Task<ActionResult<CustomerResponse>> Get(Guid id)
         {
-           var customer =  await _customerService.GetByIdAsync<GetCustomerDto>(id);
+           var customer =  await _customerService.GetByIdAsync<CustomerResponse>(id);
            if(customer is null) return NotFound();
 
            return Ok(customer);        

@@ -1,7 +1,10 @@
+using CepediFullStack.Domain.Common;
+
 namespace CepediFullStack.Application.Dtos.Order
 {
     public sealed record OrderRequest(
-        string StatusName, 
+        Guid StatusId,
+        Guid CustomerId, 
         DateOnly OrderDate
-    );
+    ) : BaseDto;
 }
