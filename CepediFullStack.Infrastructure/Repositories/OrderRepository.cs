@@ -1,6 +1,8 @@
+using System.Linq.Expressions;
 using CepediFullStack.Domain.Entities;
 using CepediFullStack.Domain.Interfaces;
 using CepediFullStack.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace CepediFullStack.Infrastructure.Repositories
 {

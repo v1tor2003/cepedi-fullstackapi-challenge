@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using CepediFullStack.Domain.Common;
 using CepediFullStack.Domain.Interfaces;
 using CepediFullStack.Infrastructure.Context;
@@ -65,8 +66,25 @@ namespace CepediFullStack.Infrastructure.Repositories
             return await _context.Set<T>().ToListAsync();
         }
 
+        public async Task<IEnumerable<T>?> GetAllAsync(params Expression<Func<T, object>>[] includes)
+        {
+            return await BuildQueryWithIncludes(includes).ToListAsync();
+        }
+
+        public async Task<T?> GetByIdAsync(Guid id, params Expression<Func<T, object>>[] includes)
+        {
+            return await BuildQueryWithIncludes(includes).FirstOrDefaultAsync(entity => EF.Property<Guid>(entity, "Id") == id);
+        }
         public async Task SaveAsync() => await _context.SaveChangesAsync();
 
-        
+        public IQueryable<T> BuildQueryWithIncludes(params Expression<Func<T, object>>[] includes)
+        {
+            IQueryable<T> query = _context.Set<T>().AsQueryable();
+
+            foreach(var include in includes) 
+               query = query.Include(include);
+
+            return query;
+        }
     }
 }
