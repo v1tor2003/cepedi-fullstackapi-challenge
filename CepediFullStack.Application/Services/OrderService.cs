@@ -10,6 +10,17 @@ namespace CepediFullStack.Application.Services
         public OrderService(
             IRepository<Order> repository, IMapper mapper) 
             : base(repository, mapper) {}
+        public new async Task<TResponse> CreateAsync<TDto, TResponse>(TDto dto) 
+            where TDto : BaseDto
+            where TResponse : BaseDto
+        {
+            var entity = _mapper.Map<Order>(dto);
+            await _repository.CreateAsync(entity);
+            await _repository.SaveAsync();
+            
+            var createdOrder = await _repository.GetByIdAsync(entity.Id, o => o.Customer);
+            return _mapper.Map<TResponse>(createdOrder);
+        }
         public async Task AddOrderProductAsync(Guid orderId, Guid productId)
         {
             var order = await _repository.GetByIdAsync(

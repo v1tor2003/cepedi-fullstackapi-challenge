@@ -26,7 +26,7 @@ namespace CepediFullStack.Infrastructure.Context
             
 
             var appSettingsFullPath = Path.Combine(currentDirectory, _appSettingsPath);
-            Console.WriteLine(appSettingsFullPath);
+            
             IConfiguration configuration = new ConfigurationBuilder()
                 .AddJsonFile(appSettingsFullPath, optional: false, reloadOnChange: true)
                 .Build();
